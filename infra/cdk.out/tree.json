@@ -1,0 +1,179 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree"
+      },
+      "exampleApp": {
+        "id": "exampleApp",
+        "path": "exampleApp",
+        "children": {
+          "test_function": {
+            "id": "test_function",
+            "path": "exampleApp/test_function",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "exampleApp/test_function/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "exampleApp/test_function/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ],
+                        "tags": [
+                          {
+                            "key": "di:application-name",
+                            "value": "Endpoint App Sample"
+                          },
+                          {
+                            "key": "di:environment-type",
+                            "value": "dev"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "exampleApp/test_function/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "exampleApp/test_function/Code/Stage"
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "exampleApp/test_function/Code/AssetBucket"
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "exampleApp/test_function/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3Bucket52E3F465"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3VersionKey6B5D396E"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3VersionKey6B5D396E"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "handler": "function.handler",
+                    "role": {
+                      "Fn::GetAtt": [
+                        "testfunctionServiceRoleDACEE615",
+                        "Arn"
+                      ]
+                    },
+                    "runtime": "python3.7",
+                    "tags": [
+                      {
+                        "key": "di:application-name",
+                        "value": "Endpoint App Sample"
+                      },
+                      {
+                        "key": "di:environment-type",
+                        "value": "dev"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "AssetParameters": {
+            "id": "AssetParameters",
+            "path": "exampleApp/AssetParameters",
+            "children": {
+              "8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21": {
+                "id": "8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21",
+                "path": "exampleApp/AssetParameters/8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "exampleApp/AssetParameters/8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21/S3Bucket"
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "exampleApp/AssetParameters/8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21/S3VersionKey"
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "exampleApp/AssetParameters/8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21/ArtifactHash"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

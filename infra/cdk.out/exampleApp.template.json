@@ -1,0 +1,131 @@
+{
+  "Resources": {
+    "testfunctionServiceRoleDACEE615": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "di:application-name",
+            "Value": "Endpoint App Sample"
+          },
+          {
+            "Key": "di:environment-type",
+            "Value": "dev"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "exampleApp/test_function/ServiceRole/Resource"
+      }
+    },
+    "testfunction020EAC11": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3Bucket52E3F465"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3VersionKey6B5D396E"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3VersionKey6B5D396E"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "function.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "testfunctionServiceRoleDACEE615",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "Tags": [
+          {
+            "Key": "di:application-name",
+            "Value": "Endpoint App Sample"
+          },
+          {
+            "Key": "di:environment-type",
+            "Value": "dev"
+          }
+        ]
+      },
+      "DependsOn": [
+        "testfunctionServiceRoleDACEE615"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "exampleApp/test_function/Resource",
+        "aws:asset:path": "asset.8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21",
+        "aws:asset:property": "Code"
+      }
+    }
+  },
+  "Parameters": {
+    "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3Bucket52E3F465": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21\""
+    },
+    "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3VersionKey6B5D396E": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21\""
+    },
+    "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21ArtifactHash0AE239C3": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21\""
+    }
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "version": "5.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "exampleApp": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://775255162681/eu-central-1",
+      "properties": {
+        "templateFile": "exampleApp.template.json"
+      },
+      "metadata": {
+        "/exampleApp": [
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21",
+              "id": "8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21",
+              "packaging": "zip",
+              "sourceHash": "8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21",
+              "s3BucketParameter": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3Bucket52E3F465",
+              "s3KeyParameter": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3VersionKey6B5D396E",
+              "artifactHashParameter": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21ArtifactHash0AE239C3"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:310:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:130:29)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:58:25)",
+              "Stack.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack.js:358:33)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:62:31)",
+              "new Asset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:36:44)",
+              "AssetCode.bind (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:137:26)",
+              "new Function (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:80:33)",
+              "C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:49",
+              "Kernel._wrapSandboxCode (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:8395:20)",
+              "Kernel._create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:26)",
+              "Kernel.create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7666:21)",
+              "KernelHost.processRequest (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7446:28)",
+              "KernelHost.run (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7384:14)",
+              "Immediate._onImmediate (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7387:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          },
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "di:application-name",
+                "Value": "Endpoint App Sample"
+              },
+              {
+                "Key": "di:environment-type",
+                "Value": "dev"
+              }
+            ],
+            "trace": [
+              "ConstructNode.addMetadata (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:310:62)",
+              "Object.addStackArtifactToAssembly (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\_shared.js:23:20)",
+              "LegacyStackSynthesizer.synthesizeStackArtifacts (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:85:19)",
+              "Stack.synthesize (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack.js:509:26)",
+              "Stack.onSynthesize (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:87:14)",
+              "C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\private\\synthesis.js:87:48",
+              "visit (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\private\\synthesis.js:121:9)",
+              "visit (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\private\\synthesis.js:118:9)",
+              "synthesizeTree (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\private\\synthesis.js:87:5)",
+              "Object.synthesize (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\private\\synthesis.js:26:5)",
+              "App.synth (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stage.js:72:41)",
+              "C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7746:51",
+              "Kernel._wrapSandboxCode (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:8395:20)",
+              "C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7746:25",
+              "Kernel._ensureSync (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:8371:20)",
+              "Kernel.invoke (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7745:26)",
+              "KernelHost.processRequest (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7446:28)",
+              "KernelHost.run (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7384:14)",
+              "Immediate._onImmediate (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7387:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/exampleApp/test_function/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testfunctionServiceRoleDACEE615",
+            "trace": [
+              "new Role (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:42:22)",
+              "new Function (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:62:35)",
+              "C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:49",
+              "Kernel._wrapSandboxCode (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:8395:20)",
+              "Kernel._create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:26)",
+              "Kernel.create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7666:21)",
+              "KernelHost.processRequest (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7446:28)",
+              "KernelHost.run (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7384:14)",
+              "Immediate._onImmediate (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7387:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/exampleApp/test_function/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testfunction020EAC11",
+            "trace": [
+              "new Function (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:106:26)",
+              "C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:49",
+              "Kernel._wrapSandboxCode (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:8395:20)",
+              "Kernel._create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:26)",
+              "Kernel.create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7666:21)",
+              "KernelHost.processRequest (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7446:28)",
+              "KernelHost.run (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7384:14)",
+              "Immediate._onImmediate (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7387:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/exampleApp/AssetParameters/8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3Bucket52E3F465",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:120:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:58:25)",
+              "Stack.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack.js:358:33)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:62:31)",
+              "new Asset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:36:44)",
+              "AssetCode.bind (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:137:26)",
+              "new Function (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:80:33)",
+              "C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:49",
+              "Kernel._wrapSandboxCode (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:8395:20)",
+              "Kernel._create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:26)",
+              "Kernel.create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7666:21)",
+              "KernelHost.processRequest (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7446:28)",
+              "KernelHost.run (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7384:14)",
+              "Immediate._onImmediate (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7387:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/exampleApp/AssetParameters/8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3VersionKey6B5D396E",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:120:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:58:25)",
+              "Stack.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack.js:358:33)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:62:31)",
+              "new Asset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:36:44)",
+              "AssetCode.bind (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:137:26)",
+              "new Function (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:80:33)",
+              "C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:49",
+              "Kernel._wrapSandboxCode (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:8395:20)",
+              "Kernel._create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:26)",
+              "Kernel.create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7666:21)",
+              "KernelHost.processRequest (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7446:28)",
+              "KernelHost.run (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7384:14)",
+              "Immediate._onImmediate (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7387:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ],
+        "/exampleApp/AssetParameters/8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21ArtifactHash0AE239C3",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:120:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:58:25)",
+              "Stack.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack.js:358:33)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:62:31)",
+              "new Asset (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:36:44)",
+              "AssetCode.bind (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:137:26)",
+              "new Function (C:\\Users\\gonza\\AppData\\Local\\Temp\\jsii-kernel-jY8MOn\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:80:33)",
+              "C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:49",
+              "Kernel._wrapSandboxCode (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:8395:20)",
+              "Kernel._create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7922:26)",
+              "Kernel.create (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7666:21)",
+              "KernelHost.processRequest (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7446:28)",
+              "KernelHost.run (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7384:14)",
+              "Immediate._onImmediate (C:\\Users\\gonza\\Google Drive\\ongoing_projects\\endpoint_app_aws\\.env\\lib\\site-packages\\jsii\\_embedded\\jsii\\jsii-runtime.js:7387:37)",
+              "processImmediate (internal/timers.js:456:21)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "runtime": {
+    "libraries": {
+      "@aws-cdk/cloud-assembly-schema": "1.53.0",
+      "@aws-cdk/cx-api": "1.53.0",
+      "@aws-cdk/core": "1.53.0",
+      "@aws-cdk/region-info": "1.53.0",
+      "@aws-cdk/aws-iam": "1.53.0",
+      "@aws-cdk/aws-cloudwatch": "1.53.0",
+      "@aws-cdk/aws-codeguruprofiler": "1.53.0",
+      "@aws-cdk/aws-kms": "1.53.0",
+      "@aws-cdk/aws-logs": "1.53.0",
+      "@aws-cdk/aws-events": "1.53.0",
+      "@aws-cdk/aws-s3": "1.53.0",
+      "@aws-cdk/aws-ssm": "1.53.0",
+      "@aws-cdk/aws-ec2": "1.53.0",
+      "@aws-cdk/aws-efs": "1.53.0",
+      "@aws-cdk/assets": "1.53.0",
+      "@aws-cdk/aws-s3-assets": "1.53.0",
+      "@aws-cdk/aws-sqs": "1.53.0",
+      "@aws-cdk/aws-lambda": "1.53.0",
+      "jsii-runtime": "Python/3.7.7"
+    }
+  }
+}
