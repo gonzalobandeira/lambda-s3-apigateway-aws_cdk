@@ -3,8 +3,8 @@
 from aws_cdk import core
 from aws_cdk.core import Tag
 
-from infra.resources_cdk.stacks import NewApp
-from infra.resources_cdk.config import SERVICE, STAGE, AWS_ACCOUNT, REGION
+from resources_cdk.stacks import NewApp
+from resources_cdk.config import SERVICE, STAGE, AWS_ACCOUNT, REGION
 
 app = core.App()
 
