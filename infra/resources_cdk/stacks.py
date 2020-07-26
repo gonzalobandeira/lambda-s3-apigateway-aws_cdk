@@ -3,7 +3,7 @@ from aws_cdk import aws_lambda as _lambda
 from aws_cdk import aws_s3
 from aws_cdk import aws_events
 from aws_cdk import aws_events_targets
-from aws_cdk import aws_apigatewayv2
+from aws_cdk import aws_apigatewayv2, aws_apigateway
 from aws_cdk import aws_iam
 
 
@@ -56,18 +56,8 @@ class NewApp(core.Stack):
         myBucket.grant_read(myEndpointLambda)
         myBucket.grant_put(myEndpointLambda)
 
-        http_api = aws_apigatewayv2.HttpApi(self, "HttpApi")
-        http_api.add_routes(
-            path="/test",
-            methods=[aws_apigatewayv2.HttpMethod.GET],
-            integration=aws_apigatewayv2.LambdaProxyIntegration(
-                handler=myEndpointLambda
-            )
-        )
-        http_api.add_routes(
-            path="/test_post",
-            methods=[aws_apigatewayv2.HttpMethod.POST],
-            integration=aws_apigatewayv2.LambdaProxyIntegration(
-                handler=myEndpointLambda
-            )
-        )
+        api = aws_apigateway.RestApi(self, "ApiEndpoint")
+        api.root.resource_for_path("/test").add_method("GET",
+                                                       aws_apigateway.LambdaIntegration(handler=myEndpointLambda))
+
+

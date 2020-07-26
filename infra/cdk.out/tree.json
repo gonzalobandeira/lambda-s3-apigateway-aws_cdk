@@ -12,17 +12,47 @@
         "id": "exampleApp",
         "path": "exampleApp",
         "children": {
-          "test_function": {
-            "id": "test_function",
-            "path": "exampleApp/test_function",
+          "S3Bucket": {
+            "id": "S3Bucket",
+            "path": "exampleApp/S3Bucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "exampleApp/S3Bucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketName": "new-app-bucket-example",
+                    "tags": [
+                      {
+                        "key": "di:application-name",
+                        "value": "Endpoint App Sample"
+                      },
+                      {
+                        "key": "di:environment-type",
+                        "value": "dev"
+                      }
+                    ]
+                  }
+                }
+              },
+              "Notifications": {
+                "id": "Notifications",
+                "path": "exampleApp/S3Bucket/Notifications"
+              }
+            }
+          },
+          "scheduled_lambda": {
+            "id": "scheduled_lambda",
+            "path": "exampleApp/scheduled_lambda",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "exampleApp/test_function/ServiceRole",
+                "path": "exampleApp/scheduled_lambda/ServiceRole",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "exampleApp/test_function/ServiceRole/Resource",
+                    "path": "exampleApp/scheduled_lambda/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -64,32 +94,109 @@
                         ]
                       }
                     }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "exampleApp/scheduled_lambda/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "exampleApp/scheduled_lambda/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "s3:GetObject*",
+                                    "s3:GetBucket*",
+                                    "s3:List*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "S3Bucket07682993",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "S3Bucket07682993",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "s3:PutObject*",
+                                    "s3:Abort*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        {
+                                          "Fn::GetAtt": [
+                                            "S3Bucket07682993",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/*"
+                                      ]
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "scheduledlambdaServiceRoleDefaultPolicyC3CCC425",
+                            "roles": [
+                              {
+                                "Ref": "scheduledlambdaServiceRole55B7BFE6"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               },
               "Code": {
                 "id": "Code",
-                "path": "exampleApp/test_function/Code",
+                "path": "exampleApp/scheduled_lambda/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "exampleApp/test_function/Code/Stage"
+                    "path": "exampleApp/scheduled_lambda/Code/Stage"
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "exampleApp/test_function/Code/AssetBucket"
+                    "path": "exampleApp/scheduled_lambda/Code/AssetBucket"
                   }
                 }
               },
               "Resource": {
                 "id": "Resource",
-                "path": "exampleApp/test_function/Resource",
+                "path": "exampleApp/scheduled_lambda/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3Bucket52E3F465"
+                        "Ref": "AssetParameters555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1S3Bucket41D7DDF2"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -102,7 +209,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3VersionKey6B5D396E"
+                                      "Ref": "AssetParameters555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1S3VersionKey99633661"
                                     }
                                   ]
                                 }
@@ -115,7 +222,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21S3VersionKey6B5D396E"
+                                      "Ref": "AssetParameters555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1S3VersionKey99633661"
                                     }
                                   ]
                                 }
@@ -125,14 +232,24 @@
                         ]
                       }
                     },
-                    "handler": "function.handler",
+                    "handler": "scheduled_lambda.handler",
                     "role": {
                       "Fn::GetAtt": [
-                        "testfunctionServiceRoleDACEE615",
+                        "scheduledlambdaServiceRole55B7BFE6",
                         "Arn"
                       ]
                     },
                     "runtime": "python3.7",
+                    "description": "Lambda that will be called according to a schedule",
+                    "environment": {
+                      "variables": {
+                        "S3_BUCKET": {
+                          "Ref": "S3Bucket07682993"
+                        }
+                      }
+                    },
+                    "functionName": "scheduledLambda",
+                    "memorySize": 128,
                     "tags": [
                       {
                         "key": "di:application-name",
@@ -145,6 +262,49 @@
                     ]
                   }
                 }
+              },
+              "EventInvokeConfig": {
+                "id": "EventInvokeConfig",
+                "path": "exampleApp/scheduled_lambda/EventInvokeConfig",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "exampleApp/scheduled_lambda/EventInvokeConfig/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::EventInvokeConfig",
+                      "aws:cdk:cloudformation:props": {
+                        "functionName": {
+                          "Ref": "scheduledlambda49C5A31E"
+                        },
+                        "qualifier": "$LATEST",
+                        "maximumRetryAttempts": 2
+                      }
+                    }
+                  }
+                }
+              },
+              "AllowEventRuleexampleAppscheduledlambdaevent200E6F21": {
+                "id": "AllowEventRuleexampleAppscheduledlambdaevent200E6F21",
+                "path": "exampleApp/scheduled_lambda/AllowEventRuleexampleAppscheduledlambdaevent200E6F21",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                  "aws:cdk:cloudformation:props": {
+                    "action": "lambda:InvokeFunction",
+                    "functionName": {
+                      "Fn::GetAtt": [
+                        "scheduledlambda49C5A31E",
+                        "Arn"
+                      ]
+                    },
+                    "principal": "events.amazonaws.com",
+                    "sourceArn": {
+                      "Fn::GetAtt": [
+                        "scheduledlambdaevent262759E3",
+                        "Arn"
+                      ]
+                    }
+                  }
+                }
               }
             }
           },
@@ -152,21 +312,586 @@
             "id": "AssetParameters",
             "path": "exampleApp/AssetParameters",
             "children": {
-              "8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21": {
-                "id": "8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21",
-                "path": "exampleApp/AssetParameters/8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21",
+              "555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1": {
+                "id": "555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1",
+                "path": "exampleApp/AssetParameters/555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "exampleApp/AssetParameters/8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21/S3Bucket"
+                    "path": "exampleApp/AssetParameters/555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1/S3Bucket"
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "exampleApp/AssetParameters/8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21/S3VersionKey"
+                    "path": "exampleApp/AssetParameters/555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1/S3VersionKey"
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "exampleApp/AssetParameters/8fe5c2eda16e972bbf6ae201f3abebde907c4ad230384b1ca6d3c6d00986de21/ArtifactHash"
+                    "path": "exampleApp/AssetParameters/555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1/ArtifactHash"
+                  }
+                }
+              }
+            }
+          },
+          "scheduled_lambda_event": {
+            "id": "scheduled_lambda_event",
+            "path": "exampleApp/scheduled_lambda_event",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "exampleApp/scheduled_lambda_event/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "scheduleExpression": "rate(2 minutes)",
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Fn::GetAtt": [
+                            "scheduledlambda49C5A31E",
+                            "Arn"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "endpoint_lambda": {
+            "id": "endpoint_lambda",
+            "path": "exampleApp/endpoint_lambda",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "exampleApp/endpoint_lambda/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "exampleApp/endpoint_lambda/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ],
+                        "tags": [
+                          {
+                            "key": "di:application-name",
+                            "value": "Endpoint App Sample"
+                          },
+                          {
+                            "key": "di:environment-type",
+                            "value": "dev"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "exampleApp/endpoint_lambda/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "exampleApp/endpoint_lambda/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "s3:GetObject*",
+                                    "s3:GetBucket*",
+                                    "s3:List*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "S3Bucket07682993",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "S3Bucket07682993",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "s3:PutObject*",
+                                    "s3:Abort*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        {
+                                          "Fn::GetAtt": [
+                                            "S3Bucket07682993",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/*"
+                                      ]
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "endpointlambdaServiceRoleDefaultPolicy46C349A3",
+                            "roles": [
+                              {
+                                "Ref": "endpointlambdaServiceRole98FDAC13"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "exampleApp/endpoint_lambda/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "exampleApp/endpoint_lambda/Code/Stage"
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "exampleApp/endpoint_lambda/Code/AssetBucket"
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "exampleApp/endpoint_lambda/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParameters555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1S3Bucket41D7DDF2"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1S3VersionKey99633661"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters555abbcec3bc30be4c333e64de19f6ff5001385237eb6dfc5d42528fcbedbfe1S3VersionKey99633661"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "handler": "endpoint_lambda.handler",
+                    "role": {
+                      "Fn::GetAtt": [
+                        "endpointlambdaServiceRole98FDAC13",
+                        "Arn"
+                      ]
+                    },
+                    "runtime": "python3.7",
+                    "description": "Lambda Proxy with Api Gateway",
+                    "environment": {
+                      "variables": {
+                        "S3_BUCKET": {
+                          "Ref": "S3Bucket07682993"
+                        }
+                      }
+                    },
+                    "functionName": "endpointLambda",
+                    "memorySize": 128,
+                    "tags": [
+                      {
+                        "key": "di:application-name",
+                        "value": "Endpoint App Sample"
+                      },
+                      {
+                        "key": "di:environment-type",
+                        "value": "dev"
+                      }
+                    ]
+                  }
+                }
+              },
+              "EventInvokeConfig": {
+                "id": "EventInvokeConfig",
+                "path": "exampleApp/endpoint_lambda/EventInvokeConfig",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "exampleApp/endpoint_lambda/EventInvokeConfig/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::EventInvokeConfig",
+                      "aws:cdk:cloudformation:props": {
+                        "functionName": {
+                          "Ref": "endpointlambda8AF6F990"
+                        },
+                        "qualifier": "$LATEST",
+                        "maximumRetryAttempts": 2
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "ApiEndpoint": {
+            "id": "ApiEndpoint",
+            "path": "exampleApp/ApiEndpoint",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "exampleApp/ApiEndpoint/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::RestApi",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "ApiEndpoint",
+                    "tags": [
+                      {
+                        "key": "di:application-name",
+                        "value": "Endpoint App Sample"
+                      },
+                      {
+                        "key": "di:environment-type",
+                        "value": "dev"
+                      }
+                    ]
+                  }
+                }
+              },
+              "CloudWatchRole": {
+                "id": "CloudWatchRole",
+                "path": "exampleApp/ApiEndpoint/CloudWatchRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "exampleApp/ApiEndpoint/CloudWatchRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "apigateway.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+                              ]
+                            ]
+                          }
+                        ],
+                        "tags": [
+                          {
+                            "key": "di:application-name",
+                            "value": "Endpoint App Sample"
+                          },
+                          {
+                            "key": "di:environment-type",
+                            "value": "dev"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "Account": {
+                "id": "Account",
+                "path": "exampleApp/ApiEndpoint/Account",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Account",
+                  "aws:cdk:cloudformation:props": {
+                    "cloudWatchRoleArn": {
+                      "Fn::GetAtt": [
+                        "ApiEndpointCloudWatchRoleC2D8C242",
+                        "Arn"
+                      ]
+                    }
+                  }
+                }
+              },
+              "Deployment": {
+                "id": "Deployment",
+                "path": "exampleApp/ApiEndpoint/Deployment",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "exampleApp/ApiEndpoint/Deployment/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Deployment",
+                      "aws:cdk:cloudformation:props": {
+                        "restApiId": {
+                          "Ref": "ApiEndpointA9C748C3"
+                        },
+                        "description": "Automatically created by the RestApi construct"
+                      }
+                    }
+                  }
+                }
+              },
+              "DeploymentStage.prod": {
+                "id": "DeploymentStage.prod",
+                "path": "exampleApp/ApiEndpoint/DeploymentStage.prod",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "exampleApp/ApiEndpoint/DeploymentStage.prod/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
+                      "aws:cdk:cloudformation:props": {
+                        "restApiId": {
+                          "Ref": "ApiEndpointA9C748C3"
+                        },
+                        "deploymentId": {
+                          "Ref": "ApiEndpointDeploymentECBE0D14d373c587eacfe9b72bd10fc325012d84"
+                        },
+                        "stageName": "prod",
+                        "tags": [
+                          {
+                            "key": "di:application-name",
+                            "value": "Endpoint App Sample"
+                          },
+                          {
+                            "key": "di:environment-type",
+                            "value": "dev"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "Endpoint": {
+                "id": "Endpoint",
+                "path": "exampleApp/ApiEndpoint/Endpoint"
+              },
+              "Default": {
+                "id": "Default",
+                "path": "exampleApp/ApiEndpoint/Default",
+                "children": {
+                  "test": {
+                    "id": "test",
+                    "path": "exampleApp/ApiEndpoint/Default/test",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "exampleApp/ApiEndpoint/Default/test/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "ApiEndpointA9C748C3",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "test",
+                            "restApiId": {
+                              "Ref": "ApiEndpointA9C748C3"
+                            }
+                          }
+                        }
+                      },
+                      "GET": {
+                        "id": "GET",
+                        "path": "exampleApp/ApiEndpoint/Default/test/GET",
+                        "children": {
+                          "ApiPermission.exampleAppApiEndpointBA755E0A.GET..test": {
+                            "id": "ApiPermission.exampleAppApiEndpointBA755E0A.GET..test",
+                            "path": "exampleApp/ApiEndpoint/Default/test/GET/ApiPermission.exampleAppApiEndpointBA755E0A.GET..test",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "endpointlambda8AF6F990",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:eu-central-1:775255162681:",
+                                      {
+                                        "Ref": "ApiEndpointA9C748C3"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "ApiEndpointDeploymentStageprod8D065908"
+                                      },
+                                      "/GET/test"
+                                    ]
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "ApiPermission.Test.exampleAppApiEndpointBA755E0A.GET..test": {
+                            "id": "ApiPermission.Test.exampleAppApiEndpointBA755E0A.GET..test",
+                            "path": "exampleApp/ApiEndpoint/Default/test/GET/ApiPermission.Test.exampleAppApiEndpointBA755E0A.GET..test",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "endpointlambda8AF6F990",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:eu-central-1:775255162681:",
+                                      {
+                                        "Ref": "ApiEndpointA9C748C3"
+                                      },
+                                      "/test-invoke-stage/GET/test"
+                                    ]
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "exampleApp/ApiEndpoint/Default/test/GET/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "GET",
+                                "resourceId": {
+                                  "Ref": "ApiEndpointtest8AC0F0C7"
+                                },
+                                "restApiId": {
+                                  "Ref": "ApiEndpointA9C748C3"
+                                },
+                                "authorizationType": "NONE",
+                                "integration": {
+                                  "type": "AWS_PROXY",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:eu-central-1:lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "endpointlambda8AF6F990",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
